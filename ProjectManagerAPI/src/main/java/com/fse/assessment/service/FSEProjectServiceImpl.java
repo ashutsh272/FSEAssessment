@@ -88,8 +88,8 @@ public class FSEProjectServiceImpl implements FSEProjectService {
 	private Integer getCompletedTaskCount(long ProjId) {
 		String projectId = String.valueOf(ProjId);
 		Integer taskCount = 0;
-		List<FSETask> taskList = fseProjectRepo.getAllTasksByProjectId(ProjId);
-		taskCount= taskList.size();
+		//List<FSETask> taskList = fseProjectRepo.getAllTasksByProjectId(ProjId);
+		//taskCount= taskList.size();
 		return taskCount;
 	}
 	
