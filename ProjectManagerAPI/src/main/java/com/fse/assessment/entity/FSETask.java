@@ -33,7 +33,7 @@ public class FSETask implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long taskId;
+	private long taskId;
 	
 	private String taskName;
 	

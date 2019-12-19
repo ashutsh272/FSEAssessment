@@ -10,7 +10,7 @@ import com.fse.assessment.entity.FSETask;
 
 public interface FSEProjectRepo extends CrudRepository<FSEProject, Long> {
 
-	List<FSEProject> findByProjectId(String projectId);
+	FSEProject findByProjectId(Long projectId);
 
 	List<FSEProject> findByProjectName(String projectName);
 	
@@ -20,8 +20,8 @@ public interface FSEProjectRepo extends CrudRepository<FSEProject, Long> {
 	
 	List<FSEProject> findByPriority(String priority);
 
-	@Query("SELECT t FROM FSETask t WHERE t.projectId = ?1")
-	List<FSETask> getAllTasksByProjectId(String projectId);
+	@Query(value="SELECT * FROM FSE_TASK t WHERE t.PROJECT_ID = ?1", nativeQuery=true)
+	List<FSETask> getAllTasksByProjectId(long projectId);
 	
 	
 	

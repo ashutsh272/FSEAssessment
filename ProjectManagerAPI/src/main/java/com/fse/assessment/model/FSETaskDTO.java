@@ -23,10 +23,10 @@ public class FSETaskDTO implements Serializable{
 	private Date endDate;
 	private Integer priority;
 	private String status;
-	private String userId;
-	private String parentTaskId;
+	private Long userId;
+	private Long parentTaskId;
 	private boolean parentTask;
-	private String projectId;
+	private Long projectId;
 	
 	
 	public String getTaskId() {
@@ -66,10 +66,16 @@ public class FSETaskDTO implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getParentTaskId() {
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public Long getParentTaskId() {
 		return parentTaskId;
 	}
-	public void setParentTaskId(String parentTaskId) {
+	public void setParentTaskId(Long parentTaskId) {
 		this.parentTaskId = parentTaskId;
 	}
 	public boolean isParentTask() {
@@ -78,18 +84,13 @@ public class FSETaskDTO implements Serializable{
 	public void setParentTask(boolean parentTask) {
 		this.parentTask = parentTask;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public String getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
+	
 	
 	
 	

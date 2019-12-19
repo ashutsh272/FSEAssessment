@@ -8,7 +8,7 @@ import com.fse.assessment.entity.FSEUser;
 
 public interface FSEUserRepo extends CrudRepository<FSEUser, Long> {
 
-	List<FSEUser> findByUserId(String userId);
+	FSEUser findByUserId(Long userId);
 
 	List<FSEUser> findByFirstName(String firstName);
 	

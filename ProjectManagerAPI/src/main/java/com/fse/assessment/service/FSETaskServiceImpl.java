@@ -15,7 +15,9 @@ import com.fse.assessment.model.BaseResponse;
 import com.fse.assessment.model.BaseResult;
 import com.fse.assessment.model.FSETaskDTO;
 import com.fse.assessment.repo.FSEParentTaskRepo;
+import com.fse.assessment.repo.FSEProjectRepo;
 import com.fse.assessment.repo.FSETaskRepo;
+import com.fse.assessment.repo.FSEUserRepo;
 import com.fse.assessment.service.response.ViewAllTasksResponse;
 
 @Service
@@ -26,6 +28,12 @@ public class FSETaskServiceImpl implements FSETaskService {
 
 	@Autowired
 	FSEParentTaskRepo fseParentTaskRepo;
+	
+	@Autowired
+	FSEUserRepo fseUserRepo;
+	
+	@Autowired
+	FSEProjectRepo fseProjectRepo;
 
 	@Override
 	public ViewAllTasksResponse getAllTasks() {
@@ -120,22 +128,20 @@ public class FSETaskServiceImpl implements FSETaskService {
 				task.setStartDate(taskDTO.getStartDate());
 				task.setEndDate(taskDTO.getEndDate());
 
+				
 				if (taskDTO.getParentTaskId() != null) {
-					FSEParentTask parentTask = new FSEParentTask();
-					parentTask.setParentTaskId(Long.valueOf(taskDTO.getParentTaskId()));
+					FSEParentTask parentTask = fseParentTaskRepo.findByParentTaskId(taskDTO.getParentTaskId());
 					task.setParentTask(parentTask);
-
 				}
 
 				if (taskDTO.getUserId() != null) {
-					FSEUser fseUser = new FSEUser();
-					fseUser.setUserId(Long.valueOf(taskDTO.getUserId()));
+					FSEUser fseUser = fseUserRepo.findByUserId(taskDTO.getUserId());
 					task.setTaskOwner(fseUser);
 				}
 
 				if (taskDTO.getProjectId() != null) {
-					FSEProject project = new FSEProject();
-					project.setProjectId(Long.valueOf(taskDTO.getProjectId()));
+					FSEProject project = fseProjectRepo.findByProjectId(taskDTO.getProjectId());
+					
 					task.setProject(project);
 				}
 
@@ -145,6 +151,7 @@ public class FSETaskServiceImpl implements FSETaskService {
 			response.setResult(new BaseResult());
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.setResult(new BaseResult(e));
 		} finally {
 

@@ -88,7 +88,7 @@ public class FSEProjectServiceImpl implements FSEProjectService {
 	private Integer getCompletedTaskCount(long ProjId) {
 		String projectId = String.valueOf(ProjId);
 		Integer taskCount = 0;
-		List<FSETask> taskList = fseProjectRepo.getAllTasksByProjectId(projectId);
+		List<FSETask> taskList = fseProjectRepo.getAllTasksByProjectId(ProjId);
 		taskCount= taskList.size();
 		return taskCount;
 	}
@@ -122,6 +122,8 @@ public class FSEProjectServiceImpl implements FSEProjectService {
 			FSEUser fseUser = new FSEUser();
 			fseUser.setUserId(Long.valueOf(projectDTO.getUserId()));
 			project.setManager(fseUser);
+			
+			
 			project.setStatus("In PROGRESS");
 			fseProjectRepo.save(project);
 			response.setResult(new BaseResult());
