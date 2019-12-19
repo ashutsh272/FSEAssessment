@@ -68,8 +68,10 @@ public class FSEProjectServiceImpl implements FSEProjectService {
 			
 			
 		}catch(ApplicationException ae){
+			ae.printStackTrace();
 			response.setResult(new BaseResult(ae));
 		}catch(Exception e){
+			e.printStackTrace();
 			response.setResult(new BaseResult(e));
 		}finally{
 			
@@ -80,17 +82,21 @@ public class FSEProjectServiceImpl implements FSEProjectService {
 	
 	//TODO
 	private Integer getTaskCount(long projectId) {
-		// TODO
-		return 0;
+		Integer taskCount = 0;
+		/*List<FSETask> taskList = fseProjectRepo.getAllTasksByProjectId(projectId);
+		taskCount= taskList.size();*/
+		return taskCount;
 	}
 
 	//TODO
 	private Integer getCompletedTaskCount(long ProjId) {
-		String projectId = String.valueOf(ProjId);
-		Integer taskCount = 0;
-		//List<FSETask> taskList = fseProjectRepo.getAllTasksByProjectId(ProjId);
-		//taskCount= taskList.size();
-		return taskCount;
+		Integer completedTaskCount = 0;
+		/*List<FSETask> taskList = fseProjectRepo.getAllTasksByProjectId(ProjId);
+		for(FSETask task:taskList){
+			if("COMPLETED".equalsIgnoreCase(task.getStatus()))
+			completedTaskCount++;
+		}*/
+		return completedTaskCount;
 	}
 	
 
@@ -102,6 +108,7 @@ public class FSEProjectServiceImpl implements FSEProjectService {
 			response.setResult(new BaseResult());
 			
 		}catch(Exception e){
+			e.printStackTrace();
 			response.setResult(new BaseResult(e));
 		}finally{
 			
@@ -124,11 +131,15 @@ public class FSEProjectServiceImpl implements FSEProjectService {
 			project.setManager(fseUser);
 			
 			
-			project.setStatus("In PROGRESS");
+			project.setStatus("IN PROGRESS");
+			if(projectDTO.getProjectId()!=null){
+				project.setProjectId(Long.valueOf(projectDTO.getProjectId()));
+			}
 			fseProjectRepo.save(project);
 			response.setResult(new BaseResult());
 			
 		}catch(Exception e){
+			e.printStackTrace();
 			response.setResult(new BaseResult(e));
 		}finally{
 			
@@ -137,7 +148,7 @@ public class FSEProjectServiceImpl implements FSEProjectService {
 	}
 
 	@Override
-	public BaseResponse updateProject(FSEProject project) {
+	public BaseResponse updateProject(FSEProjectDTO project) {
 		// TODO Auto-generated method stub
 		return null;
 	}

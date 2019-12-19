@@ -89,6 +89,7 @@ public class FSEUserServiceImpl implements FSEUserService{
 				fseUser.setEmployeeId(user.getEmployeeId());
 				fseUser.setFirstName(user.getFirstName());
 				fseUser.setLastName(user.getLastName());
+				
 				fseUserRepo.save(fseUser);
 			}
 			response.setResult(new BaseResult());

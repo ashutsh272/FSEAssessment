@@ -62,8 +62,10 @@ public class FSETaskServiceImpl implements FSETaskService {
 			}
 
 		} catch (ApplicationException ae) {
+			ae.printStackTrace();
 			response.setResult(new BaseResult(ae));
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.setResult(new BaseResult(e));
 		} finally {
 
@@ -99,6 +101,7 @@ public class FSETaskServiceImpl implements FSETaskService {
 				
 				response.setTaskList(taskList);
 			} else {
+				
 				throw new ApplicationException();
 			}
 

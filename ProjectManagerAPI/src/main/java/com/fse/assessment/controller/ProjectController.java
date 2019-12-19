@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fse.assessment.entity.FSEProject;
 import com.fse.assessment.model.BaseResponse;
 import com.fse.assessment.model.FSEProjectDTO;
 import com.fse.assessment.service.FSEProjectService;
@@ -51,9 +50,10 @@ public class ProjectController {
 	
 	//Update
 	@RequestMapping(method = RequestMethod.POST, value = "projmanager/project/update")
-	public BaseResponse updateProject(@RequestBody FSEProject project) {
+	public BaseResponse updateProject(@RequestBody FSEProjectDTO project) {
 		System.out.println("Request received for updateProject");
-		return fseProjectServiceImpl.updateProject(project);
+		//return fseProjectServiceImpl.updateProject(project);
+		return fseProjectServiceImpl.addProject(project);
 		
 	}
 

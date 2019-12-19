@@ -1,6 +1,5 @@
 package com.fse.assessment.service;
 
-import com.fse.assessment.entity.FSEProject;
 import com.fse.assessment.model.BaseResponse;
 import com.fse.assessment.model.FSEProjectDTO;
 import com.fse.assessment.service.response.ViewAllProjectsResponse;
@@ -13,6 +12,6 @@ public interface FSEProjectService {
 
 	BaseResponse addProject(FSEProjectDTO projectDTO);
 
-	BaseResponse updateProject(FSEProject project);
+	BaseResponse updateProject(FSEProjectDTO project);
 
 }
