@@ -50,7 +50,7 @@ public class FSETaskServiceImpl implements FSETaskService {
 				for (FSETask task : dbTaskList) {
 					projDTO = new FSETaskDTO();
 					projDTO.setTaskId(String.valueOf(task.getTaskId()));
-					projDTO.setTaskName(task.getTaskName());
+					projDTO.setTask(task.getTaskName());
 					projDTO.setPriority(Integer.valueOf(task.getPriority()));
 					projDTO.setStartDate(task.getStartDate());
 					projDTO.setEndDate(task.getEndDate());
@@ -94,7 +94,7 @@ public class FSETaskServiceImpl implements FSETaskService {
 				for(FSEParentTask task:dbParentTaskList){
 					taskDTO = new FSETaskDTO();
 					taskDTO.setTaskId(String.valueOf(task.getParentTaskId()));
-					taskDTO.setTaskName(task.getParentTaskName());
+					taskDTO.setTask(task.getParentTaskName());
 
 					taskList.add(taskDTO);
 				}
@@ -120,13 +120,13 @@ public class FSETaskServiceImpl implements FSETaskService {
 	public BaseResponse addTask(FSETaskDTO taskDTO) {
 		BaseResponse response = new BaseResponse();
 		try {
-			if (taskDTO.isParentTask()) {
+			if (taskDTO.isParentTaskEnabled()) {
 				FSEParentTask parentTask = new FSEParentTask();
-				parentTask.setParentTaskName(taskDTO.getTaskName());
+				parentTask.setParentTaskName(taskDTO.getTask());
 				fseParentTaskRepo.save(parentTask);
 			} else {
 				FSETask task = new FSETask();
-				task.setTaskName(taskDTO.getTaskName());
+				task.setTaskName(taskDTO.getTask());
 				task.setPriority(taskDTO.getPriority());
 				task.setStartDate(taskDTO.getStartDate());
 				task.setEndDate(taskDTO.getEndDate());
